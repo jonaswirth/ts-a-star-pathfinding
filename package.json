@@ -1,0 +1,26 @@
+{
+  "name": "ts-a-star-pathfinding",
+  "version": "1.0.0",
+  "description": "Shows the next departures",
+  "private": true,
+  "scripts": {
+    "start:dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonaswirth/ts-a-star-pathfinding.git"
+  },
+  "author": "Jonas Wirth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonaswirth/ts-a-star-pathfinding/issues"
+  },
+  "homepage": "https://github.com/jonaswirth/ts-a-star-pathfinding#readme",
+  "devDependencies": {
+    "ts-loader": "^5.3.1",
+    "typescript": "^3.2.1",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14"
+  }
+}
