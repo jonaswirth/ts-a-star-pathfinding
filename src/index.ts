@@ -28,6 +28,8 @@ function setup():void {
 
     
     drawGrid();
+
+    run();
 }
 
 function setUpCanvas():void{
@@ -46,14 +48,44 @@ function drawGrid():void{
             grid[i][j].render("white");
         }
     }
-    for(let i = 0;i<openSet.length;i++){
-        openSet[i].render("green");
-    }
+    startNode.render("blue");
+    endNode.render("blue");
 }
 
 function run():void{
+    var currentNode = startNode;
     while(openSet.length > 0){
-        //this is where the magic will be happening
+        if(currentNode == endNode){
+            console.log("Path found");
+            break;
+        }
+        var neighbors = getNeighbors(currentNode);
+        removeNodeFromArray(openSet, currentNode);
+    }
+}
+
+function getNeighbors(node:Node):Array<Node>{
+    var neighbors = new Array<Node>();
+
+    for(var i = node.x - 1; i< node.x + 2;i++){
+        if(i < 0 || i > Constants.cols){
+            continue;
+        }
+        for(var j = node.y - 1; j<node.y + 2; j++){    
+            if(j < 0 || j > Constants.rows || (i == node.x && j == node.y)){
+                continue;
+            }
+            neighbors.push(grid[i][j])
+        }
+    }
+    return neighbors;
+}
+
+function removeNodeFromArray(array:Array<Node>, node:Node):void{
+    for(var i = array.length-1; i>=0; i--){
+        if(array[i] === node){
+            array.splice(i, 1);
+        }
     }
 }
 
