@@ -1,11 +1,7 @@
+import Constants from './constants';
 import Node from './node';
 
-
-const cols = 5;
-const rows = 5;
-const gridCellSize = 20;
-
-let grid = new Array(rows);
+let grid = new Array(Constants.rows);
 
 let openSet:Array<Node> = new Array<Node>();
 let closedSet:Array<Node> = new Array<Node>();
@@ -16,21 +12,22 @@ let canvas:HTMLCanvasElement;
 let ctx:CanvasRenderingContext2D;
 
 function setup():void {
+    setUpCanvas();
     //create the grid
-    for(let i = 0; i < rows;i++){
-        grid[i] = new Array(cols);
-        for(let j = 0; j < cols; j++){
-            grid[i][j] = new Node(i, j);
+    for(let i = 0; i < Constants.rows;i++){
+        grid[i] = new Array(Constants.cols);
+        for(let j = 0; j < Constants.cols; j++){
+            grid[i][j] = new Node(i, j, ctx);
         }
     }
 
     //set start and end nodes
     startNode = grid[0][0];
     console.log(grid[0][1].x)
-    endNode = grid[rows -1][cols -1];
+    endNode = grid[Constants.rows -1][Constants.cols -1];
     openSet.push(startNode);
 
-    setUpCanvas();
+    
     drawGrid();
 
     console.log(grid);
@@ -47,10 +44,9 @@ function setUpCanvas():void{
 }
 
 function drawGrid():void{
-    for(let i = 0; i < rows;i++){    
-        for(let j = 0; j < cols; j++){
-            //grid[i][j].render(ctx);
-            ctx.rect(grid[i][j].x * gridCellSize, grid[i][j].y * gridCellSize, gridCellSize, gridCellSize);
+    for(let i = 0; i < Constants.rows;i++){    
+        for(let j = 0; j < Constants.cols; j++){
+            grid[i][j].render(255);
             ctx.stroke();
         }
     }
