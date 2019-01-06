@@ -60,6 +60,18 @@ function run():void{
             break;
         }
         var neighbors = getNeighbors(currentNode);
+        for(var i = 0; i<neighbors.length;i++){
+            if(closedSet.some(x => x === neighbors[i]))
+                continue;
+            
+            var temp = currentNode.gCost + 1;
+
+            if(openSet.some(x => x === neighbors[i])){
+                if(temp < neighbors[i].gCost)
+                    neighbors[i].gCost = temp;
+            }
+
+        }
         removeNodeFromArray(openSet, currentNode);
     }
 }
