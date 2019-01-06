@@ -23,32 +23,31 @@ function setup():void {
 
     //set start and end nodes
     startNode = grid[0][0];
-    console.log(grid[0][1].x)
     endNode = grid[Constants.rows -1][Constants.cols -1];
     openSet.push(startNode);
 
     
     drawGrid();
-
-    console.log(grid);
-    console.log(grid[1][1].x);
 }
 
 function setUpCanvas():void{
     canvas = <HTMLCanvasElement> document.getElementById("canvas");
     ctx = canvas.getContext("2d");
     
-    canvas.width = 400;
-    canvas.height = 400;
+    canvas.width = Constants.cols * Constants.gridCellSize + 1;
+    canvas.height = Constants.rows * Constants.gridCellSize + 1;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function drawGrid():void{
     for(let i = 0; i < Constants.rows;i++){    
         for(let j = 0; j < Constants.cols; j++){
-            grid[i][j].render(255);
-            ctx.stroke();
+            grid[i][j].render("white");
         }
+    }
+    for(let i = 0;i<openSet.length;i++){
+        openSet[i].render("green");
     }
 }
 
